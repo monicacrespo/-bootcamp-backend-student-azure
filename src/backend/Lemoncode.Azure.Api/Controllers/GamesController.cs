@@ -20,16 +20,19 @@ namespace Lemoncode.Azure.Api.Controllers
         private readonly StorageOptions storageOptions;
         private readonly ILogger log;
         private readonly TelemetryClient telemetry;
+        private readonly BlobService blobService;
 
         public GamesController(ApiDBContext context,
                                 IOptions<StorageOptions> storageOptionsSettings,
                                 ILogger<GamesController> log,
-                                TelemetryClient telemetry)
+                                TelemetryClient telemetry,
+                                BlobService blobService)
         {
             this.context = context;
             this.storageOptions = storageOptionsSettings.Value;
             this.log = log;
             this.telemetry = telemetry;
+            this.blobService = blobService;
         }
 
         // GET: api/Games
@@ -116,10 +119,13 @@ namespace Lemoncode.Azure.Api.Controllers
         public async Task<IActionResult> DeleteGame(int id)
         {
             var game = await context.Game.FindAsync(id);
+
             if (game == null)
             {
                 return NotFound();
             }
+
+            await this.blobService.DeleteFolderBlobs("screenshots", id.ToString());
 
             //context.Game.Remove(game);
             //await context.SaveChangesAsync();
