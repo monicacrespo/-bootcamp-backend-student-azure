@@ -82,5 +82,36 @@ namespace Lemoncode.Azure.FxGames
 
         //    SqlConnection
         //}
+
+        [FunctionName("DeleteScreenshotsQueue")]
+        public async Task DeleteScreenshotsFunctionQueue(
+            [QueueTrigger("queue", Connection = "AzureWebJobsGamesStorage")] string message)
+        {
+            try
+            {
+                await this.DeleteFolderBlobs("screenshots", message);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Error Queue trigger function:" + ex.ToString());
+
+                throw;
+            }
+
+            logger.LogInformation($"Queue trigger function processed: { message }");
+        }
+
+        private async Task DeleteFolderBlobs(string container, string folder)
+        {
+            var storageConnection = Environment.GetEnvironmentVariable("AzureWebJobsGamesStorage");
+            BlobContainerClient containerClient = new BlobContainerClient(storageConnection, container);
+
+            var folderBlobs = containerClient.GetBlobsAsync(prefix: folder);
+            await foreach (var blobItem in folderBlobs)
+            {
+                BlobClient blobClient = containerClient.GetBlobClient(blobItem.Name);
+                await blobClient.DeleteIfExistsAsync();
+            }
+        }
     }
 }

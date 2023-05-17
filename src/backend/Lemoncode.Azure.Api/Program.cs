@@ -30,6 +30,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddOptions();
 builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.StorageOptions)));
 builder.Services.AddSingleton<BlobService>();
+builder.Services.AddSingleton<QueueService>();
 var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
 aiOptions.ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
 aiOptions.DeveloperMode = true;

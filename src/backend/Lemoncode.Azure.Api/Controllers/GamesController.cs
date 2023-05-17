@@ -21,18 +21,21 @@ namespace Lemoncode.Azure.Api.Controllers
         private readonly ILogger log;
         private readonly TelemetryClient telemetry;
         private readonly BlobService blobService;
+        private readonly QueueService queueService;
 
         public GamesController(ApiDBContext context,
                                 IOptions<StorageOptions> storageOptionsSettings,
                                 ILogger<GamesController> log,
                                 TelemetryClient telemetry,
-                                BlobService blobService)
+                                BlobService blobService,
+                                QueueService queueService)
         {
             this.context = context;
             this.storageOptions = storageOptionsSettings.Value;
             this.log = log;
             this.telemetry = telemetry;
             this.blobService = blobService;
+            this.queueService = queueService;
         }
 
         // GET: api/Games
@@ -125,7 +128,11 @@ namespace Lemoncode.Azure.Api.Controllers
                 return NotFound();
             }
 
-            await this.blobService.DeleteFolderBlobs("screenshots", id.ToString());
+            // Basic Solution
+            // await this.blobService.DeleteFolderBlobs("screenshots", id.ToString());
+
+            // Intermediate Solution
+            await this.queueService.CreateQueueAndSendMessage(id.ToString());
 
             //context.Game.Remove(game);
             //await context.SaveChangesAsync();
