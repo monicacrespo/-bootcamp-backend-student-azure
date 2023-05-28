@@ -128,14 +128,13 @@ namespace Lemoncode.Azure.Api.Controllers
                 return NotFound();
             }
 
+            // context.Game.Remove(game);
+            // await context.SaveChangesAsync();
+
             // Basic Solution
             // await this.blobService.DeleteFolderBlobs("screenshots", id.ToString());
 
-            // Intermediate Solution
             await this.queueService.CreateQueueAndSendMessage(id.ToString());
-
-            //context.Game.Remove(game);
-            //await context.SaveChangesAsync();
 
             return NoContent();
         }

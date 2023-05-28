@@ -42,7 +42,7 @@ namespace Lemoncode.Azure.Api.Services
             // Get a reference to a queue and then create it
             QueueClient queue = new QueueClient(connectionString, queueName, new QueueClientOptions
             {
-                MessageEncoding = QueueMessageEncoding.None // or QueueMessageEncoding.Base64
+                MessageEncoding = QueueMessageEncoding.Base64 // or QueueMessageEncoding.None
             });
             if (null != await queue.CreateIfNotExistsAsync())
             {

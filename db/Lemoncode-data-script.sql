@@ -3,7 +3,7 @@ VALUES (
     'The secret of Monkey Island',
     'The Secret of Monkey Island is a 2D adventure game played from a third-person perspective. Via a point-and-click interface, the player guides protagonist Guybrush Threepwood through the game''s world and interacts with the environment by selecting from twelve verb commands (nine in newer versions) such as "talk to" for communicating with characters and "pick up" for collecting items between commands and the world''s objects in order to successfully solve puzzles and thus progress in the game. While conversing with other characters, the player may choose between topics for discussion that are listed in a dialog tree; the game is one of the first to incorporate such a system. The in-game action is frequently interrupted by cutscenes. Like other LucasArts adventure games, The Secret of Monkey Island features a design philosophy that makes the player character''s death nearly impossible (Guybrush does drown if he stays underwater for more than ten minutes)',
     '1990',
-    'https://lemoncodeazurestg.blob.core.windows.net/games/the-secret-of-monkey-island/the-secret-of-monkey-island.jpeg',
+    'https://lemoncodeazure.blob.core.windows.net/games/the-secret-of-monkey-island/the-secret-of-monkey-island.jpeg',
     1,
     'downloadUrl', 18, 10, 5
 );
@@ -13,7 +13,7 @@ VALUES (
     'Monkey Island 2_ LeChuck''s Revenge: The secret of Monkey Island',
     'LeChuck''s Revenge plays like most SCUMM-based point-and-click adventure games. Actions and dialogues are depicted on an Animation Window which covers the top of the screen; verbal commands are listed in the lower left-hand corner of the screen, while Inventory items are shown as icons on the lower right-hand corner. A Sentence Line is located below the Animation Window and serves in describing the actions of the player. The game was one of the few adventure games that offered the player a choice in levels of puzzle difficulty. In some versions, before starting the game, the player is prompted to choose between regular version and "Monkey 2 Lite", a relatively stripped-down experience that bypasses many puzzles entirely. On the back of the game''s packaging it is (jokingly) stated that this mode is intended for video-game reviewers',
     '1991',
-    'https://lemoncodeazurestg.blob.core.windows.net/games/monkey-island-2-lechucks-revenge/monkey-insland-2-lechucks-revenge.jpg',
+    'https://lemoncodeazure.blob.core.windows.net/games/monkey-island-2-lechucks-revenge/monkey-insland-2-lechucks-revenge.jpg',
     1,
     'downloadUrl', 18, 10, 5
 );
@@ -26,7 +26,7 @@ The player controls Guybrush''s actions using a computer mouse and optional keyb
 The player can also bring up their inventory, which appears as an open chest taking up most of the screen and containing all of the items which Guybrush has collected. By clicking and dragging items around the screen, the player can attempt to use them with other objects in the inventory (for example, combining a diamond with an engagement band to make a diamond ring), or with objects or people in the current scene.
 At the start of the game, the player may choose between two difficulty levels: a normal mode, or a "Mega-Monkey" mode with more puzzles to solve. Similarly, during the game''s third chapter, a choice is offered to either have Guybrush''s crew assist with ship-to-ship sea combat, or for the player to have full control during these battles',
     '1997',
-    'https://lemoncodeazurestg.blob.core.windows.net/games/the-curse-of-monkey-island/the-Curse-of-Monkey-Island.jpg',
+    'https://lemoncodeazure.blob.core.windows.net/games/the-curse-of-monkey-island/the-Curse-of-Monkey-Island.jpg',
     1,
     'downloadUrl', 18, 10, 5
 );
@@ -38,7 +38,7 @@ VALUES (
 A feature of the game are action-lines: Guybrush will glance at any items that can be interacted with; the player can use ''Page Up'' or ''Page Down'' to select the item that he wants Guybrush to look at.
 One of the hallmark aspects of the Monkey Island games, the insult swordfighting — the sword duels which were won by knowing the appropriate insults and responses — is briefly touched upon in the game as "insult armwrestling", and in an unwinnable insult duel against Ozzie Mandrill. In the second part of the game, the insult games are replaced by "Monkey Kombat", the name being a parody of Mortal Kombat with a symbol to match. Monkey Kombat is a sub-game akin to rock-paper-scissors, where the player needs to memorize lines of "monkey insults and retorts" which consist of per-game randomized compositions of "monkey words" like "oop", "chee", "ack" and "eek".',
     '2000',
-    'https://lemoncodeazurestg.blob.core.windows.net/games/escape-from-monkey-island/escape-from-monkey-island.jpg',
+    'https://lemoncodeazure.blob.core.windows.net/games/escape-from-monkey-island/escape-from-monkey-island.jpg',
     1,
     'downloadUrl', 18, 10, 5
 );
@@ -50,7 +50,7 @@ VALUES (
 The game world is explored with a PC keyboard and mouse, or the Wii Nunchuk''s analog stick. Contrary to previous Telltale adventure games, the player holds and drags the mouse to move Guybrush, rather than point and clicking. The WASD keys or the arrow keys may instead be used to move Guybrush. Like other Monkey Island games, Tales of Monkey Island is designed to prevent the player from meeting a dead-end, such as the death of the player character. Each of the game''s chapters is an estimated two to four hours in length, depending on the player''s ability to solve the puzzles. A hint system can assist struggling players.
 The first chapter of the game includes a "treasure hunt" mode, where the player directs Guybrush through a maze-like jungle in pursuit of hidden treasure. Found treasures translate into prizes and discounts on Telltale''s website. To access this mode, the player must locate maps on the Internet, hidden on the official Telltale website and three participating Monkey Island fansites',
     '2009',
-    'https://lemoncodeazurestg.blob.core.windows.net/games/monkey-island-2-lechucks-revenge/monkey-insland-2-lechucks-revenge.jpg',
+    'https://lemoncodeazure.blob.core.windows.net/games/monkey-island-2-lechucks-revenge/monkey-insland-2-lechucks-revenge.jpg',
     1,
     'downloadUrl', 18, 10, 5
 );
@@ -62,7 +62,7 @@ VALUES (
 The user interface is different from previous 2D Monkey Island games. Tooltips over screen hotspots guide the player''s actions: when the cursor is moved over an interactive zone of the scene, a brief phrase appears, suggesting what action Guybrush will take. The inventory uses a drag and drop interface to easily use and combine items and the interface has been designed to work with controllers or mice.
 The game includes a hint system designed to discourage players from looking for walkthroughs online and make sense "in the fantasy" of the game. The game also includes a simplified mode called "casual mode" for less experienced players.',
     '2022',
-    'https://lemoncodeazurestg.blob.core.windows.net/games/return-to-monkey-island/return-to-monkey-island.jpg',
+    'https://lemoncodeazure.blob.core.windows.net/games/return-to-monkey-island/return-to-monkey-island.jpg',
     1,
     'downloadUrl', 18, 10, 5
 );
@@ -72,7 +72,7 @@ VALUES (
     'TEST',
     'INFO TEST',
     '1992',
-    'https://picsum.photos/seed/picsum/200/300',
+    'https://lemoncodeazure.blob.core.windows.net/games/test/pyramid.jpg',
     1,
     'downloadUrl', 18, 10, 5
 );

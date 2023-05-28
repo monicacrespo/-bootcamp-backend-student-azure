@@ -87,18 +87,19 @@ namespace Lemoncode.Azure.FxGames
         public async Task DeleteScreenshotsFunctionQueue(
             [QueueTrigger("queue", Connection = "AzureWebJobsGamesStorage")] string message)
         {
+            logger.LogInformation("Queue trigger - Screenshots blob deletion started...");
             try
             {
                 await this.DeleteFolderBlobs("screenshots", message);
             }
             catch (Exception ex)
             {
-                logger.LogError("Error Queue trigger function:" + ex.ToString());
+                logger.LogError("Queue trigger - Error: " + ex.ToString());
 
                 throw;
             }
 
-            logger.LogInformation($"Queue trigger function processed: { message }");
+            logger.LogInformation($"Queue trigger - Screenshots blob deletion completed: { message }");
         }
 
         private async Task DeleteFolderBlobs(string container, string folder)
@@ -111,6 +112,7 @@ namespace Lemoncode.Azure.FxGames
             {
                 BlobClient blobClient = containerClient.GetBlobClient(blobItem.Name);
                 await blobClient.DeleteIfExistsAsync();
+                logger.LogInformation($"Screenshots blob deletion completed: {blobItem.Name}");
             }
         }
     }

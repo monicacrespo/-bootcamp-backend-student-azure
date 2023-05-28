@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "dda4cd00-5f72-4bb4-8459-53925a9ed2f0",
+		"name": "Azure Lemoncode Retro Games",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Event Grid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n  \"topic\": \"/subscriptions/{subscription-id}/resourceGroups/Storage/providers/Microsoft.Storage/storageAccounts/my-storage-account\",\r\n  \"subject\": \"/blobServices/default/containers/testcontainer/blobs/file-to-delete.txt\",\r\n  \"eventType\": \"Microsoft.Storage.BlobDeleted\",\r\n  \"eventTime\": \"2017-11-07T20:09:22.5674003Z\",\r\n  \"id\": \"4c2359fe-001e-00ba-0e04-58586806d298\",\r\n  \"data\": {\r\n    \"api\": \"DeleteBlob\",\r\n    \"requestId\": \"4c2359fe-001e-00ba-0e04-585868000000\",\r\n    \"contentType\": \"text/plain\",\r\n    \"blobType\": \"BlockBlob\",\r\n    \"url\": \"https://my-storage-account.blob.core.windows.net/testcontainer/file-to-delete.txt\",\r\n    \"sequencer\": \"0000000000000281000000000002F5CA\",\r\n    \"storageDiagnostics\": {\r\n      \"batchId\": \"b68529f3-68cd-4744-baa4-3c0498ec19f0\"\r\n    }\r\n  },\r\n  \"dataVersion\": \"\",\r\n  \"metadataVersion\": \"1\"\r\n}]"
+				},
+				"url": {
+					"raw": "http://localhost:7071/runtime/webhooks/EventGrid?functionName=DeleteThumbnails",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"runtime",
+						"webhooks",
+						"EventGrid"
+					],
+					"query": [
+						{
+							"key": "functionName",
+							"value": "DeleteThumbnails"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a game",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{RetroGamesApiUrl}}/api/Games/14/",
+					"host": [
+						"{{RetroGamesApiUrl}}"
+					],
+					"path": [
+						"api",
+						"Games",
+						"14",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{RetroGamesApiUrl}}/api/Games",
+					"host": [
+						"{{RetroGamesApiUrl}}"
+					],
+					"path": [
+						"api",
+						"Games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Game's Screenshots",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{RetroGamesApiUrl}}/api/Games/14",
+					"host": [
+						"{{RetroGamesApiUrl}}"
+					],
+					"path": [
+						"api",
+						"Games",
+						"14"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
