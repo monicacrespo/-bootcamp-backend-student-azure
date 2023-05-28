@@ -6,6 +6,8 @@
 4. [Create an App Service](#appservice)
 5. [Deploy App Service](#deployapi)
 6. [Deploy Azure Function App](#deployfunction)
+7. [Database structure and data](#dbstructure)
+8. [Azure Storage Explorer](#azure-storage-explorer)
 
 <a name="subscription"></a>
 ## 1. Azure portal subscription
@@ -149,6 +151,60 @@ After successfully publishing, go to Azure Portal, check the functions have been
 ![Functions](Functions.JPG)
 
 
+<a name="dbstructure"></a>
+## 7. Database structure and data
+Games datatable
+|Id     |  Title 	| Info| Year | PosterUrl | ...| 
+| ----- |----------------- |--- |--- |--- |--- |
+|8  | The secret of Monkey Island | ... | 1990 | https://lemoncodeazure.blob.core.windows.net/games/the-secret-of-monkey-island/the-secret-of-monkey-island.jpeg| ...|
+|9  | Monkey Island 2_ LeChuck's Revenge: The secret of Monkey Island | ... | 1991 | https://lemoncodeazure.blob.core.windows.net/games/monkey-island-2-lechucks-revenge/monkey-insland-2-lechucks-revenge.jpg | ...|
+|10  | The Curse of Monkey Island | ... | 1997 | https://lemoncodeazure.blob.core.windows.net/games/the-curse-of-monkey-island/the-Curse-of-Monkey-Island.jpg| ...|
+|11  | Escape from Monkey Island | ... | 2000 | https://lemoncodeazure.blob.core.windows.net/games/escape-from-monkey-island/escape-from-monkey-island.jpg| ...|
+|12  | Tales of Monkey Island | ... | 2009 | https://lemoncodeazure.blob.core.windows.net/games/monkey-island-2-lechucks-revenge/monkey-insland-2-lechucks-revenge.jpg| ...|
+|13  | Return to Monkey Island | ... | 2022 | https://lemoncodeazure.blob.core.windows.net/games/return-to-monkey-island/return-to-monkey-island.jpg| ...|
+|14  | TEST | INFO TEST | 1992 | https://lemoncodeazure.blob.core.windows.net/games/test/pyramid.jpg| ...|
 
+To populate a screenshot in the database and in Azure screenshot blob storage follow the next steps:
 
+1. Go to Visual Studio and start Lemoncode.Azure.Api project.
 
+2. In the Swagger UI upload a screenshot with the POST operation `api/Games/14/Screenshots/Upload`.
+Select [assets/sf2/01.jpg](assets/sf2/01.jpg) file. Repeat the operation uploading [assets/sf2/04.jpg](assets/sf2/04.jpg) file.
+
+Screenshots datatable
+|Id |  Url 	| GameId| FileName | Thumbnail | 
+| --|----------------- |--- |--- |--- |
+|2  | https://lemoncodeazure.blob.core.windows.net/screenshots/14/01.jpg | 14 | 01.jpeg| https://lemoncodeazure.blob.core.windows.net/thumbnails/14/01.jpg|
+|3  | https://lemoncodeazure.blob.core.windows.net/screenshots/14/04.jpg | 14 | 04.jpeg| https://lemoncodeazure.blob.core.windows.net/thumbnails/14/04.jpg|
+
+<a name="azure-storage-explorer"></a>
+## 8. Azure Storage Explorer 
+```
+├── Azure Subscription 1
+│   ├── Storage Accounts
+│   	├── lemoncodeazure
+│   		├── Blob Containers 
+│   		    ├── games
+│   		        ├── escape-from-monkey-island
+│   		            ├── escape-from-monkey-island.jpg
+│   		        ├── monkey-island-2-lechucks-revenge
+│   		            ├── monkey-insland-2-lechucks-revenge.jpg
+│   		        ├── return-to-monkey-island
+│   		            ├── return-to-monkey-island.jpg
+│   		        ├── street-fighter-ii
+│   		            ├── street-fighter-ii.jpeg
+│   		        ├── test
+│   		            ├── pyramid.jpg
+│   		        ├── the-curse-of-monkey-island
+│   		            ├── the-Curse-of-Monkey-Island.jpg
+│   		        ├── the-secret-of-monkey-island
+│   		            ├── the-secret-of-monkey-island.jpeg
+│   		    ├── screenshots│   		       
+│   		        ├── 14
+│   		            ├── 01.jpg
+│   		            ├── 04.jpg
+│   		    ├── thumbnails│   		      
+│   		        ├── 14
+│   		            ├── 01.jpg
+│   		            ├── 04.jpg
+```

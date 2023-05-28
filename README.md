@@ -1,13 +1,11 @@
 # Azure - Relational - Module 3
 1. [Exercise](#exercise)
 2. [Prerequisites](#prerequisites)
-3. [Database structure and data](#dbstructure)
-4. [Azure Storage Explorer](#azure-storage-explorer)
-5. [Basic Solution](#basic-solution)
-6. [Advanced Solution](#advanced-solution)
-7. [Configure the Event Grid architecture](#event-grid-architecture)
-8. [Testing locally the Event Subscription](#testing-locally-event-subscription)
-9. [End to End testing](#e2e-testing)
+3. [Basic Solution](#basic-solution)
+4. [Advanced Solution](#advanced-solution)
+5. [Configure the Event Grid architecture](#event-grid-architecture)
+6. [Testing locally the Event Subscription](#testing-locally-event-subscription)
+7. [End to End testing](#e2e-testing)
 
 <a name="exercise"></a>
 ## 1. Exercise
@@ -17,72 +15,10 @@ For this exercise you would need to delete a database record and its images asso
 
 <a name="prerequisites"></a>
 ## 2. Prerequisites
-The Azure services required for this solution can be found [here](doc/README.md).
-
-<a name="dbstructure"></a>
-## 3. Database structure and data
-Games datatable
-|Id     |  Title 	| Info| Year | PosterUrl | ...| 
-| ----- |----------------- |--- |--- |--- |--- |
-|8  | The secret of Monkey Island | ... | 1990 | https://lemoncodeazure.blob.core.windows.net/games/the-secret-of-monkey-island/the-secret-of-monkey-island.jpeg| ...|
-|9  | Monkey Island 2_ LeChuck's Revenge: The secret of Monkey Island | ... | 1991 | https://lemoncodeazure.blob.core.windows.net/games/monkey-island-2-lechucks-revenge/monkey-insland-2-lechucks-revenge.jpg | ...|
-|10  | The Curse of Monkey Island | ... | 1997 | https://lemoncodeazure.blob.core.windows.net/games/the-curse-of-monkey-island/the-Curse-of-Monkey-Island.jpg| ...|
-|11  | Escape from Monkey Island | ... | 2000 | https://lemoncodeazure.blob.core.windows.net/games/escape-from-monkey-island/escape-from-monkey-island.jpg| ...|
-|12  | Tales of Monkey Island | ... | 2009 | https://lemoncodeazure.blob.core.windows.net/games/monkey-island-2-lechucks-revenge/monkey-insland-2-lechucks-revenge.jpg| ...|
-|13  | Return to Monkey Island | ... | 2022 | https://lemoncodeazure.blob.core.windows.net/games/return-to-monkey-island/return-to-monkey-island.jpg| ...|
-|14  | TEST | INFO TEST | 1992 | https://lemoncodeazure.blob.core.windows.net/games/test/pyramid.jpg| ...|
-
-To populate a screenshot in the database and in Azure screenshot blob storage follow the next steps:
-
-1. Open the Lemoncode.Azure solution, in Lemoncode.Azure.Api project add your database and general-purpose Azure storage account connection strings in the appsettings file and start the application. 
-
-2. Go to Lemoncode.Azure.FxGames project, and inside the Values section of the `local.settings.json` file and replace "MY-AZURE-STORAGE-ACCOUNT-ASSOCIATED-TO-APPLICATION" with your azure general-purpose Azure storage account connection. Start the application going to Debug > Start New Instance
-
-
-3. In the Swagger UI upload a screenshot with the POST operation `api/Games/14/Screenshots/Upload`.
-Select [assets/sf2/01.jpg](assets/sf2/01.jpg) file. Repeat the operation uploading [assets/sf2/04.jpg](assets/sf2/04.jpg) file.
-
-Screenshots datatable
-|Id |  Url 	| GameId| FileName | Thumbnail | 
-| --|----------------- |--- |--- |--- |
-|2  | https://lemoncodeazure.blob.core.windows.net/screenshots/14/01.jpg | 14 | 01.jpeg| https://lemoncodeazure.blob.core.windows.net/thumbnails/14/01.jpg|
-|3  | https://lemoncodeazure.blob.core.windows.net/screenshots/14/04.jpg | 14 | 04.jpeg| https://lemoncodeazure.blob.core.windows.net/thumbnails/14/04.jpg|
-
-<a name="azure-storage-explorer"></a>
-## 4. Azure Storage Explorer 
-```
-├── Azure Subscription 1
-│   ├── Storage Accounts
-│   	├── lemoncodeazure
-│   		├── Blob Containers 
-│   		    ├── games
-│   		        ├── escape-from-monkey-island
-│   		            ├── escape-from-monkey-island.jpg
-│   		        ├── monkey-island-2-lechucks-revenge
-│   		            ├── monkey-insland-2-lechucks-revenge.jpg
-│   		        ├── return-to-monkey-island
-│   		            ├── return-to-monkey-island.jpg
-│   		        ├── street-fighter-ii
-│   		            ├── street-fighter-ii.jpeg
-│   		        ├── test
-│   		            ├── pyramid.jpg
-│   		        ├── the-curse-of-monkey-island
-│   		            ├── the-Curse-of-Monkey-Island.jpg
-│   		        ├── the-secret-of-monkey-island
-│   		            ├── the-secret-of-monkey-island.jpeg
-│   		    ├── screenshots│   		       
-│   		        ├── 14
-│   		            ├── 01.jpg
-│   		            ├── 04.jpg
-│   		    ├── thumbnails│   		      
-│   		        ├── 14
-│   		            ├── 01.jpg
-│   		            ├── 04.jpg
-```
-
+The Azure services and database populated required for this solution can be found [here](doc/README.md).
 
 <a name="basic-solution"></a>
-## 5. Basic Solution
+## 3. Basic Solution
 1. The user sends an API request to an endpoint to delete a game, passing the identifier of the game, e.g. 14.
 2. The api deletes that game from a sql database using Entity Framework.
 3. The api deletes its images (.jpg) stored in blobs inside an Azure storage account. This storage account includes a container (here called screenhots) with the blobs that need to be deleted.
@@ -111,7 +47,7 @@ Screenshots datatable
    ```
 
 <a name="advanced-solution"></a>
-## 6. Advanced Solution 
+## 4. Advanced Solution 
 A more efficient way is delegating the deletion of the screenshots blobs (step 3) to an Azure Function triggered by a message on a Azure Queue. 
 If we would also like to have a process that, when a file is deleted from the screenshots blob storage, it’s automatically deleted from the thumbnails blob storage, then using an Azure Event Grid will bring a more powerful and reliable process in the cloud.
 
@@ -274,8 +210,7 @@ These are the steps of the process:
    ```
 
 <a name="event-grid-architecture"></a>
-## 7. Configure the Event Grid architecture
-
+## 5. Configure the Event Grid architecture
 
 The main part here is to configure the Event Grid source and destination. 
 Get started with [Functions Event Grid Blob Trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-event-grid-blob-trigger?pivots=programming-language-csharp).
@@ -315,7 +250,7 @@ More information in [Manually create resources for Event Grid Subscription](http
 
 
 <a name="testing-locally-event-subscription"></a>
-## 8. Testing locally the Event Subscription
+## 6. Testing locally the Event Subscription
 1. Run your Azure Function project.
 2. Use a Postman Request to delete a file from the screenshots blob storage e.g. `screenshots/14/04.jpg` as follows:
    * POST  http://localhost:7071/runtime/webhooks/EventGrid?functionName=DeleteThumbnails
@@ -352,7 +287,7 @@ More information in [Manually create resources for Event Grid Subscription](http
 3. Go to Azure Portal, select your storage account to see the `thumbnails/14/04.jpg` file has been deleted from the thumbnails blob container.
 
 <a name="e2e-testing"></a>
-## 9. End to End testing
+## 7. End to End testing
 
 You can test the whole flow by following these steps:
 
@@ -404,4 +339,4 @@ You can test the whole flow by following these steps:
         │   		        ├── 14
         │   		            ├── 01.jpg (deleted)
         │   		            ├── 04.jpg (deleted)
-        ```        
+        ```
